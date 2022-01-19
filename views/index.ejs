@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet"  href="../css/index.css" type="text/css">
+    <title>Pleasant Pets</title>
+  </head>
+
+  <body>
+     <% for(let i=0; i < array.length; i++) {%>
+        <div>
+            <img src="<%= array[i] %>" alt="">
+            <span>up vote <%=upVotes%> </span>
+            <span>down vote <%=downVotes%> </span>
+        </div>
+
+
+     <% } %>
+  </body>
+  <script type="text/javascript" src="./../public/js/voting.js"></script>
+</html>
