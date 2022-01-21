@@ -1,18 +1,18 @@
-const { fileURLToPath } = require('url');
-
 import fetch from 'node-fetch'
 globalThis.fetch = fetch
 import express from 'express'
 import dotenv from 'dotenv'
-import path from 'path'
 
 dotenv.config()
 
 var app = express()
 
+
 app.set('view engine', "ejs")
 app.use(express.static('public'));
 
+
+// grab content from cat api 
 
 app.get("/", (req, res) => {
 
@@ -23,33 +23,12 @@ app.get("/", (req, res) => {
             let catArray = response.map(obj => {
                 return obj.url
             }) 
-            console.log(catArray)
-            res.render("index", {array: catArray, upVotes: 10, downVotes: 10}) 
+            res.render("index", {array: catArray}) 
         })
 })
 
-app.put('/', (req, res) => {
+// collect information from web page and make a fetch request 
 
-    db.collection('messages')
-      .findOneAndUpdate({
-
-        quote: req.body.quote //HERE HERE
-
-      }, {
-        $set: {
-          isSelected: req.body.isSelected
-        }
-      }, {
-        sort: {
-          _id: -1
-        },
-        upsert: true //hwre
-      }, (err, result) => {
-        if (err) return res.send(err)
-        res.send(result)
-      })
-  })
-
-console.log(`Your port is ${process.env.PORT}`)
 app.listen(3000)
 
+//logic for what is being done in routes should be kept separate

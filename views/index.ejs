@@ -9,14 +9,18 @@
 
   <body>
      <% for(let i=0; i < array.length; i++) {%>
-        <div>
+        <div class="card">
+            <span>Net: </span>
             <img src="<%= array[i] %>" alt="">
-            <span>up vote <%=upVotes%> </span>
-            <span>down vote <%=downVotes%> </span>
+            <div>
+              <button class="upVote">up vote <span class="upValue">0</span></button>
+              
+              <button class="downVote">down vote <span class="downValue">0</span></button>
+            </div>
         </div>
 
 
      <% } %>
   </body>
-  <script type="text/javascript" src="./../public/js/voting.js"></script>
+  <script type="text/javascript" src="../js/voting.js"></script>
 </html>
