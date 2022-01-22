@@ -10,12 +10,12 @@
   <body>
      <% for(let i=0; i < array.length; i++) {%>
         <div class="card">
-            <span>Net: </span>
-            <img src="<%= array[i] %>" alt="">
+            <span class="netScore">Net: </span>
+            <img src="<%= array[i].url %>" alt="">
             <div>
-              <button class="upVote">up vote <span class="upValue">0</span></button>
+              <button class="upVote">up vote <span class="upValue"></span></button>
               
-              <button class="downVote">down vote <span class="downValue">0</span></button>
+              <button class="downVote">down vote <span class="downValue"></span></button>
             </div>
         </div>
 

@@ -7,7 +7,6 @@ dotenv.config()
 
 var app = express()
 
-
 app.set('view engine', "ejs")
 app.use(express.static('public'));
 
@@ -21,7 +20,8 @@ app.get("/", (req, res) => {
         .then(response => {
             console.log(response)
             let catArray = response.map(obj => {
-                return obj.url
+                console.log(obj)
+                return { url: obj.url, id: obj.id }
             }) 
             res.render("index", {array: catArray}) 
         })
@@ -29,6 +29,6 @@ app.get("/", (req, res) => {
 
 // collect information from web page and make a fetch request 
 
-app.listen(3000)
+app.listen(process.env.PORT)
 
 //logic for what is being done in routes should be kept separate
