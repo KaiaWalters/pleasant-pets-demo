@@ -1,0 +1,29 @@
+
+button {
+    font-size: 25px;
+}
+section, div { 
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    display:flex;
+    background-image: radial-gradient(rgb(196,121,250) 20%, transparent 20%),
+        radial-gradient(#fafafa 20%, transparent 20%);
+    background-color: rgb(253,253,151);
+    background-position: 0 0, 50px 50px;
+    background-size: 100px 100px;
+    margin: 100px 50px; 
+}
+
+.music {
+    display: flex;
+    color: rgb(133,25,191);
+    padding: 10px;
+    background-color: rgb(206,244,210);
+    border: 8px solid rgb(103, 150, 108); 
+    max-width: 30%;
+    font-size: 25;
+    font-weight: bold;
+}

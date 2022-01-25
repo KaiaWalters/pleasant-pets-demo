@@ -1,0 +1,13 @@
+.card_outer-border {
+    background-color:  rgb(231,196,255);   
+    border: 5px solid rgb(196,121,250);
+    width:fit-content;
+    margin: 40px;
+}
+.card_inner-border {
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(231,196,255);   
+    width:fit-content;
+    padding: 10px; 
+}

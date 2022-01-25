@@ -3,24 +3,41 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet"  href="../css/index.css" type="text/css">
+    <link rel="stylesheet"  href="../css/main.css" type="text/css">
+    <link rel="stylesheet"  href="../css/card.css" type="text/css">
+    <link rel="stylesheet"  href="../css/card_border.css" type="text/css">
     <title>Pleasant Pets</title>
   </head>
 
   <body>
+    
+      <span class="music">PLAY MUSIC <i class="fas fa-volume-down"></i> </span>
+    
      <% for(let i=0; i < array.length; i++) {%>
-        <div class="card">
-            <span class="netScore">Net: </span>
-            <img src="<%= array[i].url %>" alt="">
-            <div>
-              <button class="upVote">up vote <span class="upValue"></span></button>
-              
-              <button class="downVote">down vote <span class="downValue"></span></button>
-            </div>
+        <div class="card_outer-border">
+            <div class="card_inner-border">
+
+              <section class="card_start-container">
+                <span class="net-score">Net Score: 0 </span>
+              </section>
+
+              <div class="card">
+                <section class="card_mid-container">
+                  <img src="<%= array[i].url %>" alt="image of a cat">
+                </section>
+              </div>
+
+              <section class="card_end-container">
+                <button class="upVote">up vote <span class="upValue">0</span></button>
+                <button class="downVote">down vote <span class="downValue">0</span></button>
+              </section>
+
+           </div>
         </div>
-
-
      <% } %>
+
   </body>
+  <script type="text/javascript" src="../js/audio.js"></script>
   <script type="text/javascript" src="../js/voting.js"></script>
+ 
 </html>
