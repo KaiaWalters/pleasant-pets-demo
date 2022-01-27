@@ -1,3 +1,4 @@
+
 const thumbUp = document.getElementsByClassName("upVote")
 const thumbDown = document.getElementsByClassName("downVote")
 const upValue = document.getElementsByClassName("upValue")
@@ -17,7 +18,7 @@ Array.from(thumbUp).forEach(function(element, index) {
         let currentUpVotes = +upValue.innerText + 1
     
         upValue.innerText = currentUpVotes
-        playCatSound("/../assets/audio/meow_audio.mp3")
+        playCatAudio("/../assets/audio/meow_audio.mp3")
         saveUpdates(url, currentUpVotes, downValue)
     })
 })
@@ -29,7 +30,7 @@ Array.from(thumbDown).forEach(function(element) {
         let currentDownVotes = +downValue.innerText + 1 
 
         downValue.innerText = currentDownVotes
-        playCatSound("/../assets/audio/hiss_audio.mp3")
+        playCatAudio("/../assets/audio/hiss_audio.mp3")
         saveUpdates(url, upValue, currentDownVotes)
     })
 })
@@ -52,11 +53,11 @@ function saveUpdates(url, upVotes, downVotes) {
     })
 };
 
-function playCatSound(audio) {
-        const meow = new Audio(audio);
-        meow.play();
-        meow.loop =false;
-        meow.playbackRate = 2;
+function playCatAudio(audio) {
+    const meow = new Audio(audio);
+    meow.play();
+    meow.loop =false;
+    meow.playbackRate = 2;
 }
 
 function computeNetScore(upVotes, downVotes){
