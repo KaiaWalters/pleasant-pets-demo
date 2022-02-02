@@ -7,6 +7,7 @@ const netScore = document.getElementsByClassName("netScore")
 //module method for structuring node modules 
 //look up supporter files. 
 
+
 Array.from(thumbUp).forEach(function(element, index) {
     element.addEventListener('click', function() {
         //inner text = priimitive, primitives are always passed by value
@@ -20,6 +21,7 @@ Array.from(thumbUp).forEach(function(element, index) {
         upValue.innerText = currentUpVotes
         playCatAudio("/../assets/audio/meow_audio.mp3")
         saveUpdates(url, currentUpVotes, downValue)
+        netScore.innerText = currentUpVotes - downValue
     })
 })
 Array.from(thumbDown).forEach(function(element) {
@@ -32,6 +34,7 @@ Array.from(thumbDown).forEach(function(element) {
         downValue.innerText = currentDownVotes
         playCatAudio("/../assets/audio/hiss_audio.mp3")
         saveUpdates(url, upValue, currentDownVotes)
+        netScore.innerText = currentUpVotes - downValue
     })
 })
 

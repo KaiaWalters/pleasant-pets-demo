@@ -9,11 +9,8 @@ section, div {
 
 body {
     display:flex;
-    background-image: radial-gradient(rgb(196,121,250) 20%, transparent 20%),
-        radial-gradient(#fafafa 20%, transparent 20%);
-    background-color: rgb(253,253,151);
-    background-position: 0 0, 50px 50px;
-    background-size: 100px 100px;
+    background: rgb(206,88,238);
+    background: linear-gradient(0deg, rgba(206,88,238,1) 0%, rgba(2,0,36,1) 75%);
     margin: 100px 50px; 
 }
 
