@@ -1,4 +1,5 @@
 
+import ejs from '../../node_modules/ejs/ejs'
 
 window.onload = (event) => { saveImages() };
 
@@ -25,21 +26,26 @@ function saveImages() {
 
     }else if (!storageContents) {
         console.log("no data needed")
+        storeImages(localStorage.getItem('images'))
+
     }
 };
 
 function storeImages(localStoredImages) {
-    let requestOptions =  {
-        method: 'put', 
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ images : localStoredImages })
-    }
+    console.log("I am here")
+    ejs.render("index", {array: localStoredImages})
 
-    fetch(`http://localhost:3000/`, requestOptions)
-    .then(response => {
-        if(response.ok){
-            return response.json()
-        }
-    })
+    // let requestOptions =  {
+    //     method: 'put', 
+    //     headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify({ images : localStoredImages })
+    // }
+    // fetch(`http://localhost:3000/`, requestOptions)
+    // .then(response => {
+    //     if(response.ok){
+    //         ejs.render("index", {array: localStoredImages})
+    //         return response.json()
+    //     }
+    // })
 };
 
