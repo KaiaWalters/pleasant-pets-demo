@@ -4,20 +4,14 @@ const thumbDown = document.getElementsByClassName("downVote")
 const upValue = document.getElementsByClassName("upValue")
 const downValue = document.getElementsByClassName("downValue")
 const netScore = document.getElementsByClassName("netScore")
-//module method for structuring node modules 
-//look up supporter files. 
-
 
 Array.from(thumbUp).forEach(function(element, index) {
     element.addEventListener('click', function() {
-        //inner text = priimitive, primitives are always passed by value
-        //review memory 
-        //reference vs value
         let upValue = element.firstElementChild
         let downValue = +element.parentElement.lastElementChild.firstElementChild.innerText
         let url = element.parentElement.parentElement.childNodes[3].src
         let currentUpVotes = +upValue.innerText + 1
-    
+
         upValue.innerText = currentUpVotes
         playCatAudio("/../assets/audio/meow_audio.mp3")
         saveUpdates(url, currentUpVotes, downValue)

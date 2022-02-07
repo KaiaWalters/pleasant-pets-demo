@@ -23,13 +23,13 @@
 
               <div class="card">
                 <section class="card_mid-container">
-                  <img src="<%= array[i].url %>" alt="image of a cat">
+                  <img src="<%= array[i].url%>" alt="image of a cat">
                 </section>
               </div>
 
               <section class="card_end-container">
-                <button class="upVote">up vote <span class="upValue">0</span></button>
-                <button class="downVote">down vote <span class="downValue">0</span></button>
+                <button class="upVote">up vote <span class="upValue"><%= array[i].upVotes%></span></button>
+                <button class="downVote">down vote <span class="downValue"><%= array[i].downVotes%></span></button>
               </section>
 
            </div>

@@ -23,28 +23,32 @@ mongoose.connect(url, (err, database) => {
 }); 
 
 let wasFetchCalled = false 
-let imageQueue = []
 
 app.get("/", (req, res) => {
-  console.log("start")
+  console.log("server started")
+
   if(wasFetchCalled) {
-    console.log("display previously saved images")
-    queueImages().then( result => 
-      res.render("index", {array: result.array}))
-    } 
+    console.log("queuing up cards to display")
+    queueImages()
+    .then( results => {
+      res.render("index", {array: results})
+    })
+  
+    console.log("RENDERING COMPLETE")
+  } 
   else {
     fetch(`https://api.thecatapi.com/v1/images/search?limit=20`)
     .then(res => res.json())
     .then(response => {
-      let images = response.map(obj => {
-          return { url: obj.url}
+      let urls = response.map(obj => {
+          return obj.url
       })
-      console.log("save images")
-      saveImages(images)
-
-      //send data to client side
-      // res.send({wasFetchCalled: true})
-      res.render("index", { array: images})
+      let imageObj = response.map(obj => {
+        return {url: obj.url}
+    })
+      console.log("SAVING IMAGES")
+      saveNewCards(urls)
+      res.render("index", { array: imageObj})
     })
   }
 })
@@ -70,57 +74,31 @@ app.put('/cards', (req, res) => {
   })
 
   async function queueImages() {
-    let callItem
+    let images = []
     console.log("Get the last inserted document")
-    await db.collection("images").find({}, {"array": true}).sort({_id: 1}).limit(1)
+    await db.collection("cards").find({}, {"array": true}).sort({_id: 1}).limit(20)
     .forEach(function(item){
-      callItem = item 
+        images.push({url: item.url,upVotes: item.upVotes, downVotes: item.downVotes})
+    })
+    return images
+   }
+
+   function saveNewCards(imageArray) {
+    wasFetchCalled = true 
+    let count = 0
+    let documents = imageArray.map( url => {
+      return { url: url, upVotes: 0, downVotes: 0 }
     })
 
-    return callItem
-    // var myDocument = returnedCursor.hasNext() ? returnedCursor.next() : null;
-    // if(myDocument) {
-    //   let documentArray = myDocument
-    //   console.log("document", JSON.stringify(documentArray))
-    // }
-    // if(false) {    
-    //   console.log("invalid image array id") 
-    // } else {
-      // let dbResult = db.collection('images')
-      // .findOne(
-      //   {_id: imageArrayId},
-      //    (error, result) => {
-      //       if(result) {
-      //         console.log("pushing array of images into image queue to be rendered", result)
-      //         imageQueue.push(result.array)
-      //         return result.array
-      //       }else {
-      //         console.log("image array can not be found")
-      //       }
-      //     },
-      //   )
-      //   console.log("result", dbResult)
-     // }
-    }
- 
-  async function saveImages(imageArray) {
-    wasFetchCalled = true 
-    await  db.collection('images').insertOne({array: imageArray})
-    .then((result) => {
-      let insertedId =  result.insertedId
-      return insertedId
-     })
-  }
+    db.collection('cards')
+    .insertMany(
+      documents,
+      {ordered: true}
+    )
+    .then( count = documents.length )
 
-  //load app contains multiple promises 
-  //issue is a race condition 
-  //the first request is not done by the time that the second on e is called 
-// app.get("/",(req, res) => {
-//   loadApp((imageArray) => {
-//     res.render("index", {array: imageArray})
-//     console.log("Last Step")
-//   })
-// })
+    console.log(`${count} NEW CARDS HAVE BEEN GENERATED`)
+  }
 
 app.listen(process.env.PORT)
 
