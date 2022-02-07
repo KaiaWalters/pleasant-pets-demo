@@ -45,38 +45,20 @@ app.put('/cards', (req, res) => {
       })
   })
 
-app.get('/images', (req, res) => {
- fetch(`https://api.thecatapi.com/v1/images/search?limit=20`)
-  .then(res => res.json())
-  .then(response => {
-    let images = response.map(obj => {
-        return { url: obj.url}
-    })
-    res.json(images)
-    return images 
+app.get("/", (req, res) => {
+  fetch(`https://api.thecatapi.com/v1/images/search?limit=20`)
+    .then(res => res.json())
+    .then(response => {
+      let images = response.map(obj => {
+          return { url: obj.url}
+      })
+      console.log(images)
+      res.render("index", { array: images})
   })
 })
 
-let parsedImageArray = []
-
-function loadApp(req, res) {
-  res.render("index", {array: {array: req}})
-}
-
-app.put("/", (req, res) => {
-  console.log("Should be First")
-  parsedImageArray = JSON.parse(req.body.images)
-  console.log(parsedImageArray)
-})
-
-app.get("/", (req, res) => {
-  console.log("Should be Second", parsedImageArray)
-  if(parsedImageArray.length > 0) {
-    loadApp(parsedImageArray, res)
-  }else {
-    loadApp(parsedImageArray, res)
-    console.log("error")
-  }
-})
-
 app.listen(process.env.PORT)
+
+//On first visit to the page the user should be able to view cat images
+//Should be able to vote on images 
+//None of this data is required to be saved
