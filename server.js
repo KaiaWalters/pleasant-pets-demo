@@ -22,7 +22,8 @@ mongoose.connect(url, (err, database) => {
   db = database
 }); 
 
-let wasFetchCalled = false 
+//
+let wasFetchCalled = true
 
 app.get("/", (req, res) => {
   console.log("server started")
@@ -37,7 +38,7 @@ app.get("/", (req, res) => {
     console.log("RENDERING COMPLETE")
   } 
   else {
-    fetch(`https://api.thecatapi.com/v1/images/search?limit=20`)
+    fetch(`https://api.thecatapi.com/v1/images/search?limit=${process.env.LIMIT}`)
     .then(res => res.json())
     .then(response => {
       let urls = response.map(obj => {
@@ -54,6 +55,7 @@ app.get("/", (req, res) => {
 })
 
 app.put('/cards', (req, res) => {
+  console.log("UPDATING VOTES", req.body.url)
     db.collection('cards')
       .findOneAndUpdate({
         url: req.body.url
@@ -65,18 +67,24 @@ app.put('/cards', (req, res) => {
         }
       }, {
         sort: {
-          _id: -1
+          _id: 1
         },
-        upsert: true 
+        upsert: false 
       }, (err, result) => {
+          console.log(err,result)
           return {err, result}
-      })
+      }).then(
+        //rerender the page after complete
+        //front end events should not be updated by backend results 
+        //A: investigate dynamic updating 
+        //B: return new page  
+      )
   })
 
   async function queueImages() {
     let images = []
     console.log("Get the last inserted document")
-    await db.collection("cards").find({}, {"array": true}).sort({_id: 1}).limit(20)
+    await db.collection("cards").find({}, {"array": true}).sort({_id: 1}).limit(5)
     .forEach(function(item){
         images.push({url: item.url,upVotes: item.upVotes, downVotes: item.downVotes})
     })

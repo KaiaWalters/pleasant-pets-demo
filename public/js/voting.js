@@ -5,11 +5,11 @@ const upValue = document.getElementsByClassName("upValue")
 const downValue = document.getElementsByClassName("downValue")
 const netScore = document.getElementsByClassName("netScore")
 
-Array.from(thumbUp).forEach(function(element, index) {
+Array.from(thumbUp).forEach(function(element) {
     element.addEventListener('click', function() {
         let upValue = element.firstElementChild
         let downValue = +element.parentElement.lastElementChild.firstElementChild.innerText
-        let url = element.parentElement.parentElement.childNodes[3].src
+        let url = element.parentElement.parentElement.childNodes[3].childNodes[1].firstElementChild.src
         let currentUpVotes = +upValue.innerText + 1
 
         upValue.innerText = currentUpVotes
@@ -22,7 +22,7 @@ Array.from(thumbDown).forEach(function(element) {
     element.addEventListener('click', function() {
         let downValue = element.firstElementChild
         let upValue = +element.parentElement.lastElementChild.firstElementChild.innerText
-        let url = element.parentElement.parentElement.childNodes[3].src
+        let url = element.parentElement.parentElement.childNodes[3].childNodes[1].firstElementChild.src
         let currentDownVotes = +downValue.innerText + 1 
 
         downValue.innerText = currentDownVotes
@@ -34,6 +34,7 @@ Array.from(thumbDown).forEach(function(element) {
 
 
 function saveUpdates(url, upVotes, downVotes) {
+    console.log("URL THAT HAS BEEN SAVED", url)
     fetch(`cards`, {
         method: 'put', 
         headers: {'Content-Type': 'application/json'},

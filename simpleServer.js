@@ -21,6 +21,7 @@ mongoose.connect(url, (err, database) => {
 }); 
 
 app.put('/cards', (req, res) => {
+  console.log("SENDING VOTES")
     db.collection('cards')
       .findOneAndUpdate({
         url: req.body.url
