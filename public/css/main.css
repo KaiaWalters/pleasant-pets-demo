@@ -7,11 +7,15 @@ section, div {
     justify-content: center;
 }
 
-body {
-    display:flex;
-    background: rgb(206,88,238);
-    background: linear-gradient(0deg, rgba(206,88,238,1) 0%, rgba(2,0,36,1) 75%);
-    margin: 100px 50px; 
+.filler {
+    display: flex;
+    width: 20%;
+}
+
+.main_container {
+    display: flex; 
+    flex-direction: column;
+    margin: 10px auto;
 }
 
 .music {

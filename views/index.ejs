@@ -10,15 +10,16 @@
   </head>
 
   <body>
-    
+    <div class="filler"></div>
+    <div class="main_container">
       <span class="music">PLAY MUSIC <i class="fas fa-volume-down"></i> </span>
     
-     <% for(let i=0; i < array.length; i++) {%>
+      <% for(let i=0; i < array.length; i++) {%>
         <div class="card_outer-border">
             <div class="card_inner-border">
 
               <section class="card_start-container">
-                <span class="net-score">Net Score: 0 </span>
+                <span class="net-score">Net Score: <%=array[i].upVotes - array[i].downVotes%> </span>
               </section>
 
               <div class="card">
@@ -31,11 +32,11 @@
                 <button class="upVote">up vote <span class="upValue"><%= array[i].upVotes%></span></button>
                 <button class="downVote">down vote <span class="downValue"><%= array[i].downVotes%></span></button>
               </section>
-
            </div>
         </div>
      <% } %>
-
+    </div>
+    <div class="filler"></div>
   </body>
   <script type="text/javascript" src="../js/audio.js"></script>
   <script type="text/javascript" src="../js/voting.js"></script>
