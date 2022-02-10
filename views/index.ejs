@@ -10,10 +10,10 @@
   </head>
 
   <body>
-    <div class="filler"></div>
+   
+    <span class="music">PLAY MUSIC <i class="fas fa-volume-down"></i> </span>
     <div class="main_container">
-      <span class="music">PLAY MUSIC <i class="fas fa-volume-down"></i> </span>
-    
+      <span class="title">PLEASEANT PETS ONLINE</span>
       <% for(let i=0; i < array.length; i++) {%>
         <div class="card_outer-border">
             <div class="card_inner-border">
@@ -29,15 +29,16 @@
               </div>
 
               <section class="card_end-container">
-                <button class="upVote">up vote <span class="upValue"><%= array[i].upVotes%></span></button>
+                <button class="upVote"></i><span class="upValue"> <img src="../public/assets/images/heart-solid.svg" alt="heart"><%= array[i].upVotes%></span></button>
                 <button class="downVote">down vote <span class="downValue"><%= array[i].downVotes%></span></button>
               </section>
            </div>
         </div>
      <% } %>
+     <button class="body_load-more" onclick="loadMore(<%= array.length%>)">Load More</button>
     </div>
-    <div class="filler"></div>
   </body>
   <script type="text/javascript" src="../js/audio.js"></script>
   <script type="text/javascript" src="../js/voting.js"></script>
+  <script type="text/javascript" src="../js/queryHandler.js"></script>
 </html>

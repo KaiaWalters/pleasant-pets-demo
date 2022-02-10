@@ -5,12 +5,10 @@ div,section {
 }
 
 .card {
-    border: 5px solid rgb(196,121,250);
     flex-direction: column;
     width: fit-content;
     height: fit-content;
     background-color: white ;
-    padding: 20px 50px;
 }
 
 .card_start-container {
@@ -33,6 +31,7 @@ img {
     height: 40rem; 
     background-color: white;
     border-radius: 20px;
+    border: 5px solid rgb(196,121,250)
 }
 
 

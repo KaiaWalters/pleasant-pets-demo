@@ -1,6 +1,11 @@
 
+body {
+    background-color: rgb(245,231,209);
+}
+
 button {
     font-size: 25px;
+    display: flex;
 }
 section, div { 
     display: flex;
@@ -16,15 +21,16 @@ section, div {
     display: flex; 
     flex-direction: column;
     margin: 10px auto;
+    align-items: center;
 }
 
 .music {
     display: flex;
-    color: rgb(133,25,191);
+    color: rgb(186,115,56);
     padding: 10px;
-    background-color: rgb(206,244,210);
-    border: 8px solid rgb(103, 150, 108); 
-    max-width: 30%;
+    background-color:rgb(213,176,141);
+    border: 5px solid rgb(186,115,56); 
+    max-width: 10%;
     font-size: 25;
     font-weight: bold;
 }
