@@ -1,4 +1,7 @@
 
+//Audio.js 
+//You can choose to add music to your project. 
+//This is completely optional but would be a nice touch! 
 
 const musicButton = document.getElementsByClassName("music")[0]
 

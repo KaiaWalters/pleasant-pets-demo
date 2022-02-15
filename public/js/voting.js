@@ -5,6 +5,11 @@ const upValue = document.getElementsByClassName("upValue")
 const downValue = document.getElementsByClassName("downValue")
 const netScore = document.getElementsByClassName("netScore")
 
+//Voting.js
+//This file is responsible for managing the voting feature of the application. You will need to access
+//The up vote and down vote buttons from this file. 
+
+
 Array.from(thumbUp).forEach(function(element) {
     element.addEventListener('click', function() {
         let upValue = element.firstElementChild
@@ -14,7 +19,7 @@ Array.from(thumbUp).forEach(function(element) {
 
         upValue.innerText = currentUpVotes
         playCatAudio("/../assets/audio/meow_audio.mp3")
-        saveUpdates(url, currentUpVotes, downValue)
+        updateVotes(url, currentUpVotes, downValue)
         netScore.innerText = currentUpVotes - downValue
     })
 })
@@ -27,13 +32,15 @@ Array.from(thumbDown).forEach(function(element) {
 
         downValue.innerText = currentDownVotes
         playCatAudio("/../assets/audio/hiss_audio.mp3")
-        saveUpdates(url, upValue, currentDownVotes)
+        updateVotes(url, upValue, currentDownVotes)
         netScore.innerText = currentUpVotes - downValue
     })
 })
 
-
-function saveUpdates(url, upVotes, downVotes) {
+//Update Votes
+//This function is responsible for sending data (in this case the number of upVotes and downVotes) 
+//from the client side to the server side. You will need to create a request (hint,hint).
+function updateVotes(url, upVotes, downVotes) {
     console.log("URL THAT HAS BEEN SAVED", url)
     fetch(`cards`, {
         method: 'put', 
@@ -51,12 +58,17 @@ function saveUpdates(url, upVotes, downVotes) {
     })
 };
 
+
 function playCatAudio(audio) {
     const meow = new Audio(audio);
     meow.play();
     meow.loop =false;
     meow.playbackRate = 2;
 }
+
+//Compute New Score 
+//compute net score is responsible for...well computing the net score of a cat card using the number 
+//of upVotes and downVotes. 
 
 function computeNetScore(upVotes, downVotes){
     let net = upVotes - downVotes

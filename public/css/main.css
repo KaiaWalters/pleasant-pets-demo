@@ -6,7 +6,25 @@ body {
 button {
     font-size: 25px;
     display: flex;
+    align-items: center;
 }
+
+.upVote > img {
+    width: 40px;
+    height: 40px;
+    background-color:rgb(196,121,250);
+    border-radius: 0 ;
+    border: none;
+}
+
+.downVote > img {
+    width: 40px;
+    height: 40px;
+    background-color:rgb(196,121,250);
+    border-radius: 0 ;
+    border: none;
+}
+
 section, div { 
     display: flex;
     justify-content: center;

@@ -4,6 +4,9 @@ import database from '../../config/database.js'
 let url = database.url
 mongoose.connect(url) 
 
+//Mongo.js
+//Not sure if this file is still useful
+
 const catCardSchema = new mongoose.Schema({
   id: String,
   upVotes: String,
